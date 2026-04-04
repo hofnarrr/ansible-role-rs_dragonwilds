@@ -1,0 +1,39 @@
+---
+# we use lineinfile module to modify the config options, because the server
+# uses the file to save some runtime configuration in it, and we don't want
+# to override those
+
+- name: config | set owner id
+  ansible.builtin.lineinfile:
+    path: '{{ rs_dragonwilds_server_cfg_path }}'
+    regexp: '^OwnerId='
+    line: 'OwnerId={{ rs_dragonwilds_owner_id }}'
+  notify: restart server
+
+- name: config | set server name
+  ansible.builtin.lineinfile:
+    path: '{{ rs_dragonwilds_server_cfg_path }}'
+    regexp: '^ServerName='
+    line: 'ServerName={{ rs_dragonwilds_server_name }}'
+  notify: restart server
+
+- name: config | set default world name
+  ansible.builtin.lineinfile:
+    path: '{{ rs_dragonwilds_server_cfg_path }}'
+    regexp: '^DefaultWorldName='
+    line: 'DefaultWorldName={{ rs_dragonwilds_default_world_name }}'
+  notify: restart server
+
+- name: config | set world password
+  ansible.builtin.lineinfile:
+    path: '{{ rs_dragonwilds_server_cfg_path }}'
+    regexp: '^WorldPassword='
+    line: 'WorldPassword={{ rs_dragonwilds_world_password }}'
+  notify: restart server
+
+- name: config | set admin password
+  ansible.builtin.lineinfile:
+    path: '{{ rs_dragonwilds_server_cfg_path }}'
+    regexp: '^AdminPassword='
+    line: 'AdminPassword={{ rs_dragonwilds_admin_password }}'
+  notify: restart server

@@ -1,0 +1,2 @@
+---
+rs_dragonwilds_server_cfg_path: '{{ rs_dragonwilds_install_dir }}/RSDragonwilds/Saved/Config/LinuxServer/DedicatedServer.ini'

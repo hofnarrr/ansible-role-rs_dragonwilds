@@ -1,0 +1,16 @@
+---
+dependencies:
+  - hofnarrr.steamcmd
+
+galaxy_info:
+  role_name: rs_dragonwilds
+  author: hofnarr
+  description: 'RuneScape: Dragonwilds Dedicated Server'
+  license: WTFPL
+
+  min_ansible_version: '2.14'
+
+  galaxy_tags:
+    - runescape
+    - dragonwilds
+    - jagex

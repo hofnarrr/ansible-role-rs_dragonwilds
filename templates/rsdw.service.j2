@@ -1,0 +1,16 @@
+[Unit]
+Description=RuneScape: Dragonwilds Dedicated Server
+Documentation=https://dragonwilds.runescape.wiki/w/Dedicated_Servers
+Wants=network-online.target
+After=syslog.target network.target local-fs.target
+
+[Service]
+WorkingDirectory={{ rs_dragonwilds_install_dir }}
+User={{ rs_dragonwilds_user }}
+Group={{ rs_dragonwilds_user }}
+ExecStart={{ rs_dragonwilds_install_dir }}/RSDragonwildsServer.sh -log -NewConsole
+Type=simple
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

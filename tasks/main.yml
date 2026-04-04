@@ -1,0 +1,43 @@
+---
+- block:
+  - name: rs_dragonwilds | add user for RS:DW dedicated server
+    ansible.builtin.user:
+      name: '{{ rs_dragonwilds_user }}'
+      home: '{{ rs_dragonwilds_user_home }}'
+      password_lock: true
+    tags: rs_dragonwilds_server
+
+  - name: rs_dragonwilds | install RS:DW dedicated server
+    become: true
+    become_user: '{{ rs_dragonwilds_user }}'
+    ansible.builtin.shell:
+      cmd: /usr/games/steamcmd +force_install_dir {{ rs_dragonwilds_install_dir }} +login anonymous +app_update {{ rs_dragonwilds_steam_appid }} +quit
+      executable: /bin/bash
+    tags: rs_dragonwilds_server
+
+  - block:
+    - name: rs_dragonwilds | configure server
+      ansible.builtin.include_tasks: config.yml
+
+    - name: rs_dragonwilds | render systemd service file
+      ansible.builtin.template:
+        src: rsdw.service.j2
+        dest: /etc/systemd/system/{{ rs_dragonwilds_systemd_service }}.service
+        owner: root
+        group: root
+        mode: u=rw,g=r,o=r
+      notify:
+        - systemd daemon-reload
+        - restart server
+
+    - name: rs_dragonwilds | run handlers
+      meta: flush_handlers
+
+    - name: rs_dragonwilds | set RS:DW service state
+      ansible.builtin.systemd:
+        name: '{{ rs_dragonwilds_systemd_service }}'
+        enabled: '{{ rs_dragonwilds_service_enabled | bool }}'
+        state: '{{ "started" if rs_dragonwilds_service_started | bool else "stopped" }}'
+    tags: rs_dragonwilds_cfg
+
+  become: true

@@ -1,0 +1,17 @@
+---
+rs_dragonwilds_user: rsdw
+rs_dragonwilds_user_home: /opt/rsdw
+
+rs_dragonwilds_install_dir: '{{ [rs_dragonwilds_user_home, "server"] | path_join }}'
+
+rs_dragonwilds_systemd_service: rsdw
+rs_dragonwilds_service_enabled: true
+rs_dragonwilds_service_started: true
+
+rs_dragonwilds_steam_appid: "4019830"
+
+# rs_dragonwilds_server_name: My RSDW Server
+# rs_dragonwilds_default_world_name: myworld
+# rs_dragonwilds_owner_id: 0123abc456def7890123abc456def789
+# rs_dragonwilds_world_password: my-server-password
+# rs_dragonwilds_admin_password: change-this-admin-password!
