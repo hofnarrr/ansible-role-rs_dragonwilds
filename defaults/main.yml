@@ -1,4 +1,6 @@
 ---
+rs_dragonwilds_server_port: 7777
+
 rs_dragonwilds_user: rsdw
 rs_dragonwilds_user_home: /opt/rsdw
 

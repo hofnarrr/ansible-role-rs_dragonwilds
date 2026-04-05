@@ -8,7 +8,7 @@ After=syslog.target network.target local-fs.target
 WorkingDirectory={{ rs_dragonwilds_install_dir }}
 User={{ rs_dragonwilds_user }}
 Group={{ rs_dragonwilds_user }}
-ExecStart={{ rs_dragonwilds_install_dir }}/RSDragonwildsServer.sh -log -NewConsole
+ExecStart={{ rs_dragonwilds_install_dir }}/RSDragonwildsServer.sh -log -NewConsole -Port={{ rs_dragonwilds_server_port }}
 Type=simple
 Restart=always
 
