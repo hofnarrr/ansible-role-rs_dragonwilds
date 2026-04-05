@@ -8,7 +8,12 @@ After=syslog.target network.target local-fs.target
 WorkingDirectory={{ rs_dragonwilds_install_dir }}
 User={{ rs_dragonwilds_user }}
 Group={{ rs_dragonwilds_user }}
-ExecStart={{ rs_dragonwilds_install_dir }}/RSDragonwildsServer.sh -log -NewConsole -Port={{ rs_dragonwilds_server_port }}
+{% if rs_dragonwilds_unsupported_change_max_players | bool -%}
+{% set _maxplayers_opt = " -ini:Game:[/Script/Engine.GameSession]:MaxPlayers=" + rs_dragonwilds_max_players | string %}
+{% else %}
+{% set _maxplayers_opt = "" %}
+{% endif %}
+ExecStart={{ rs_dragonwilds_install_dir }}/RSDragonwildsServer.sh -log -NewConsole -Port={{ rs_dragonwilds_server_port }}{{ _maxplayers_opt }}
 Type=simple
 Restart=always
 

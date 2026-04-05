@@ -1,6 +1,13 @@
 ---
 rs_dragonwilds_server_port: 7777
 
+# N.B.! Change this variable to `true` to modify the max player setting.
+#       Changing the player cap is not officially supported by the developers!
+rs_dragonwilds_unsupported_change_max_players: false
+rs_dragonwilds_max_players: 6   # N.B.! Official support is up to six (6)
+                                # players, but it's possible to set a higher
+                                # value than that.
+
 rs_dragonwilds_user: rsdw
 rs_dragonwilds_user_home: /opt/rsdw
 
