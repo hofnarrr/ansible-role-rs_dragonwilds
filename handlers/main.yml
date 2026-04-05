@@ -1,10 +1,10 @@
 ---
+- name: systemd daemon-reload
+  ansible.builtin.systemd:
+    daemon_reload: true
+
 - name: restart server
   ansible.builtin.systemd:
     name: '{{ rs_dragonwilds_systemd_service }}'
     state: restarted
   when: rs_dragonwilds_service_started | bool
-
-- name: systemd daemon-reload
-  ansible.builtin.systemd:
-    daemon_reload: true
