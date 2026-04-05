@@ -4,7 +4,7 @@ This role installs and configures RuneScape: Dragonwilds dedicated server.
 
 # dependencies
 
-- `steamcmd` (e.g. role `hofnarrr.steamcmd`)
+- `steamcmd` (e.g. role [`hofnarrr.steamcmd`](https://github.com/hofnarrr/ansible-role-steamcmd/))
 
 # usage
 
@@ -23,6 +23,11 @@ Install the role and use it in your playbooks:
         rs_dragonwilds_owner_id: 0123abc456def7890123abc456def789
         rs_dragonwilds_world_password: my-server-password
         rs_dragonwilds_admin_password: change-this-admin-password!
+
+        # optional vars
+        rs_dragonwilds_server_port: 1337
+        rs_dragonwilds_unsupported_change_max_players: true
+        rs_dragonwilds_max_players: 12
 
       roles:
         - hofnarrr.steamcmd  # steamcmd is required
